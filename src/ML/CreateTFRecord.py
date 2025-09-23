@@ -24,7 +24,7 @@ class RecordBuilder:
         self.hashmap.load_map()
 
     def get_next_batch(self, n=50):
-        """Fetch next batch of n games"""
+        """Fetch next batch of n games into here"""
         batch = self.wrapper.get_n_games(n)
         if batch:
             self.currentBatch = batch
@@ -50,7 +50,7 @@ class RecordBuilder:
         moves_int = self.replace_tokens(moves)
         return float(white), float(black), moves_int
 
-    def decompose_batch(self, batch, max_len=128):
+    def decompose_batch(self, batch, max_len=96):
         """Convert batch to padded sequences and labels"""
         X_list, y_list = [], []
         for row in batch:
@@ -102,5 +102,5 @@ class RecordBuilder:
 
 
 if __name__ == "__main__":
-    rb = RecordBuilder(output_dir="/volumes/bck/CHESS/TFRecords", fileDirectory="/volumes/bck/LICHESS")
-    rb.build_tfrecords(batch_size=500000, max_len=128)
+    rb = RecordBuilder(output_dir="./data/tfrecordsamples/small", fileDirectory="./data/samples")
+    rb.build_tfrecords(batch_size=500, max_len=96)

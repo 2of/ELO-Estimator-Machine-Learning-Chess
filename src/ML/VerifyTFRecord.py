@@ -12,7 +12,7 @@ def _parse_example(example_proto, max_len=256):
     return moves, tf.stack([parsed["white_elo"], parsed["black_elo"]])
 
 if __name__ == "__main__":
-    tfrecord_path = "./data/tfrecords/games_0000.tfrecord"  # change as needed
+    tfrecord_path = "./data/tfrecordsamples/games_0000.tfrecord"  # change as needed
 
     dataset = tf.data.TFRecordDataset(tfrecord_path)
     dataset = dataset.map(lambda x: _parse_example(x))
