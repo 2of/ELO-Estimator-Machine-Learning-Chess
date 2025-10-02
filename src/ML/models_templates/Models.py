@@ -8,19 +8,20 @@ class SimpleNNModel(tf.keras.Model):
         self.dense1 = tf.keras.layers.Dense(128, activation="relu")
         self.dense2 = tf.keras.layers.Dense(64, activation="relu")
         self.output_layer = tf.keras.layers.Dense(2, activation="linear")  # white_elo, black_elo
-
+    def __str__(self):
+        return("SIMPLENN")
     def call(self, inputs, training=False):
-        print("Input shape:", inputs.shape)
+        # print("Input shape:", inputs.shape)
         x = self.embedding(inputs)
-        print("After embedding:", x.shape)
+        # print("After embedding:", x.shape)
         x = self.flatten(x)
-        print("After flatten:", x.shape)
+        # print("After flatten:", x.shape)
         x = self.dense1(x)
-        print("After dense1:", x.shape)
+        # print("After dense1:", x.shape)
         x = self.dense2(x)
-        print("After dense2:", x.shape)
+        # print("After dense2:", x.shape)
         out = self.output_layer(x)
-        print("Output shape:", out.shape)
+        # print("Output shape:", out.shape)
         return out
 
 
@@ -35,7 +36,8 @@ class Attention_EloModel(tf.keras.Model):
         ])
         self.pool = tf.keras.layers.GlobalAveragePooling1D()
         self.output_layer = tf.keras.layers.Dense(2, activation="linear")
-
+    def __str__(self):
+        return("Attention_EloModel")
     def call(self, inputs, training=False):
         x = self.embedding(inputs)
         attn_out = self.attention(x, x)
@@ -52,7 +54,8 @@ class LSTMModel(tf.keras.Model):
         self.lstm = tf.keras.layers.LSTM(128, return_sequences=False)  # summarize the sequence
         self.dense1 = tf.keras.layers.Dense(64, activation="relu")
         self.output_layer = tf.keras.layers.Dense(2, activation="linear")
-
+    def __str__(self):
+        return("LSTMModel")
     def call(self, inputs, training=False):
         print("Input shape:", inputs.shape)
         x = self.embedding(inputs)
@@ -77,7 +80,8 @@ class LSTM_Attention_EloModel(tf.keras.Model):
         ])
         self.pool = tf.keras.layers.GlobalAveragePooling1D()
         self.output_layer = tf.keras.layers.Dense(2, activation="linear")
-
+    def __str__(self):
+        return("LSTM_Attention_EloModel")
     def call(self, inputs, training=False):
         x = self.embedding(inputs)
         x = self.lstm(x)
