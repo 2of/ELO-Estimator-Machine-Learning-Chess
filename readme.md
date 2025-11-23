@@ -6,7 +6,8 @@ This free tool provides an alternative to Chess.com's ELO estimation, allowing y
 
 You can test the estimator with your own PGN file by visiting the web interface at:
 
-* **[ML Chess Elo Estimator]([https://thingies.dev/#/chesseelo](https://thingies.dev/#/ChessEloEsimator))** (currently not up)
+* **[ML Chess Elo Estimator](https://thingies.dev/#/ChessEloEsimator)** (currently not up)
+
 
 ## How It Works
 
